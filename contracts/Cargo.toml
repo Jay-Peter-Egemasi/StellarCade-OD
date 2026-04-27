@@ -103,6 +103,7 @@ members = [
     "squad-match",
     "sponsor-pool",
     "sponsorship-ledger",
+    "treasury-safeguard",
 ]
 
 exclude = [
