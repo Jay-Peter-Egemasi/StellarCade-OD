@@ -432,3 +432,18 @@ export type {
   AlertItem,
   AlertAction,
 } from "./AlertStackRegion";
+export {
+  InlineAlertCluster,
+  default as InlineAlertClusterDefault,
+} from "./InlineAlertCluster";
+export type {
+  InlineAlertClusterAction,
+  InlineAlertClusterItem,
+  InlineAlertClusterProps,
+} from "./InlineAlertCluster";
+
+export {
+  EntityActionShortcuts,
+  default as EntityActionShortcutsDefault,
+} from "./EntityActionShortcuts";
+export type { EntityActionShortcutsProps } from "./EntityActionShortcuts";
