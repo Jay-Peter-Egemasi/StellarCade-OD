@@ -2,7 +2,9 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { EntityActionShortcuts } from '../components/v1/EntityActionShortcuts';
 import { PinnedWalletActionTray } from '../components/v1/PinnedWalletActionTray';
 import { ResumeTaskBanner } from '../components/v1/ResumeTaskBanner';
+import { RecentRewardActivityStrip } from '../components/v1/RecentRewardActivityStrip';
 import { StatusPill } from '../components/v1/StatusPill';
+import { StickyActionsFooter } from '../components/v1/StickyActionsFooter';
 import { WalletBalanceDeltaCards } from '../components/v1/WalletBalanceDeltaCards';
 import { RelatedWalletQuickLinks, type RelatedWallet } from '../components/v1/RelatedWalletQuickLinks';
 import GlobalStateStore from '../services/global-state-store';
@@ -141,6 +143,17 @@ const WalletDetail: React.FC<WalletDetailProps> = ({ walletId = 'wallet_123' }) 
           <div className="wallet-detail__content">
             <h2>Wallet Settings</h2>
             <p>Configure wallet preferences and security settings...</p>
+            <StickyActionsFooter
+              testId="wallet-settings-workflow-footer"
+              steps={[
+                { id: 'review', label: 'Review changes' },
+                { id: 'verify', label: 'Verify wallet' },
+                { id: 'submit', label: 'Submit update' },
+              ]}
+              currentStepId="review"
+            >
+              <button type="button">Continue</button>
+            </StickyActionsFooter>
           </div>
         );
       default:
@@ -156,6 +169,15 @@ const WalletDetail: React.FC<WalletDetailProps> = ({ walletId = 'wallet_123' }) 
                 <h3>Status</h3>
                 <StatusPill tone="success" label="Active" />
               </div>
+              <RecentRewardActivityStrip
+                title="Recent reward timeline"
+                items={[
+                  { id: 'rw-1', amount: '+45 XLM', source: 'Tournament reward', timestamp: new Date(Date.now() - 20 * 60 * 1000).toISOString() },
+                  { id: 'rw-2', amount: '+12 XLM', source: 'Mission bonus', timestamp: new Date(Date.now() - 3 * 60 * 60 * 1000).toISOString() },
+                  { id: 'rw-3', amount: '+6 XLM', source: 'Referral milestone', timestamp: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString() },
+                ]}
+                testId="wallet-overview-reward-timeline"
+              />
             </div>
           </div>
         );
