@@ -1,10 +1,10 @@
 /**
- * @jest-environment happy-dom
+ * @vitest-environment happy-dom
  */
 
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { AuditSnapshotCard, type AuditSnapshot } from '@/components/v1/AuditSnapshotCard';
 
 const mockAudit: AuditSnapshot = {

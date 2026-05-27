@@ -256,6 +256,21 @@ export type {
   QueueMetrics,
 } from "./QueueHealthWidget";
 
+export {
+  StickyActionsFooter,
+  default as StickyActionsFooterDefault,
+} from "./StickyActionsFooter";
+export type { StickyActionsFooterProps } from "./StickyActionsFooter";
+
+export {
+  WalletBalanceDeltaCards,
+  default as WalletBalanceDeltaCardsDefault,
+} from "./WalletBalanceDeltaCards";
+export type {
+  WalletBalanceDeltaCardsProps,
+  WalletComparisonBalance,
+} from "./WalletBalanceDeltaCards";
+
 // Issues #621–#624
 export {
   ReorderableList,
@@ -298,3 +313,14 @@ export type {
   ReviewField,
   RiskLevel,
 } from "./ReviewSubmitSheet";
+
+// Issue #705
+export {
+  ContractHealthRibbon,
+  default as ContractHealthRibbonDefault,
+} from "./ContractHealthRibbon";
+export type {
+  ContractHealthRibbonProps,
+  ContractHealthStatus,
+  ContractHealthRibbonVariant,
+} from "./ContractHealthRibbon";

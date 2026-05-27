@@ -1,10 +1,10 @@
 /**
- * @jest-environment happy-dom
+ * @vitest-environment happy-dom
  */
 
-import { render, screen, fireEvent, waitFor, act } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { QueueHealthWidget, type QueueMetrics } from '@/components/v1/QueueHealthWidget';
 
 const mockMetrics: QueueMetrics = {
@@ -90,9 +90,7 @@ describe('QueueHealthWidget', () => {
       expect(screen.getByText(/Next update in \d+s/)).toBeInTheDocument();
       
       // Fast-forward 5 seconds
-      act(() => {
-        vi.advanceTimersByTime(5000);
-      });
+      vi.advanceTimersByTime(5000);
       
       await waitFor(() => {
         expect(mockOnRefresh).toHaveBeenCalledTimes(1);
@@ -123,9 +121,7 @@ describe('QueueHealthWidget', () => {
       );
       
       // Advance time partially
-      act(() => {
-        vi.advanceTimersByTime(3000);
-      });
+      vi.advanceTimersByTime(3000);
       
       // Manual refresh
       fireEvent.click(screen.getByTestId('queue-health-widget-refresh'));

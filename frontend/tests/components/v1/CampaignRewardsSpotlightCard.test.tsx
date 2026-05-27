@@ -1,5 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
+import { describe, expect, it, vi } from "vitest";
 import { CampaignRewardsSpotlightCard } from "../../../src/components/v1/CampaignRewardsSpotlightCard";
 
 describe("CampaignRewardsSpotlightCard", () => {
@@ -11,10 +12,12 @@ describe("CampaignRewardsSpotlightCard", () => {
       />,
     );
 
-    const card = screen.getByTestId("campaign-rewards-spotlight");
-    expect(card).toBeInTheDocument();
-    expect(card).toHaveTextContent(/4\s+running campaigns/i);
-    expect(card).toHaveTextContent(/18 claims\s+pending rewards/i);
+    expect(screen.getByTestId("campaign-rewards-spotlight")).toBeInTheDocument();
+    expect(
+      screen.getByText((_, element) =>
+        element?.textContent === "4 running campaigns • 18 claims pending rewards",
+      ),
+    ).toBeInTheDocument();
   });
 
   it("handles empty campaign state", () => {

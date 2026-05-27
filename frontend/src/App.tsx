@@ -25,50 +25,77 @@ const MAIN_CONTENT_ID = "main-content";
 
 type AppRoute = "lobby" | "games" | "portfolio" | "profile";
 
-const ROUTE_PATHS: Record<AppRoute, string> = {
-  lobby: "/",
-  games: "/games",
-  portfolio: "/portfolio",
-  profile: "/profile",
-};
+function getAppRoute(pathname: string): AppRoute {
+  if (pathname === "/profile" || pathname.startsWith("/profile/")) {
+    return "profile";
+  }
 
-const resolveRouteFromPath = (pathname: string): AppRoute => {
-  if (pathname === "/profile") return "profile";
-  if (pathname === "/portfolio") return "portfolio";
-  if (pathname === "/games") return "games";
+  if (pathname === "/portfolio" || pathname.startsWith("/portfolio/")) {
+    return "portfolio";
+  }
+
+  if (pathname === "/games" || pathname.startsWith("/games/")) {
+    return "games";
+  }
+
   return "lobby";
-};
+}
+
+function navigateToRoute(navigate: ReturnType<typeof useNavigate>, route: AppRoute): void {
+  switch (route) {
+    case "profile":
+      navigate("/profile");
+      break;
+    case "portfolio":
+      navigate("/portfolio");
+      break;
+    case "games":
+      navigate("/games");
+      break;
+    case "lobby":
+    default:
+      navigate("/");
+      break;
+  }
+}
 
 const AppContent: React.FC = () => {
   const { t } = useI18n();
   const location = useLocation();
   const navigate = useNavigate();
-  const currentRoute = resolveRouteFromPath(location.pathname);
+  const route = React.useMemo(() => getAppRoute(location.pathname), [location.pathname]);
+
+  const handleNavigate = React.useCallback(
+    (nextRoute: AppRoute) => {
+      navigateToRoute(navigate, nextRoute);
+    },
+    [navigate],
+  );
 
   const commands: Command[] = [
     {
       id: "go-lobby",
       label: "Go to Lobby",
       description: "Open the game lobby",
-      action: () => navigate("/"),
+      action: () => handleNavigate("lobby"),
     },
     {
       id: "go-games",
       label: "Go to Games",
       description: "Open the games section",
-      action: () => navigate(ROUTE_PATHS.games),
+      action: () => handleNavigate("games"),
     },
     {
       id: "go-profile",
       label: "Go to Profile Settings",
       description: "Open the profile settings page",
-      action: () => navigate("/profile"),
+      action: () => handleNavigate("profile"),
     },
     {
       id: "go-portfolio",
       label: "Go to Portfolio",
       description: "Open wallet, rewards, and collectibles",
-      action: () => navigate(ROUTE_PATHS.portfolio),
+      action: () => handleNavigate("portfolio"),
     },
   ];
 
@@ -92,10 +119,7 @@ const AppContent: React.FC = () => {
         Skip to main content
       </a>
 
-      <AppSidebar
-        currentRoute={currentRoute}
-        onNavigate={(route) => navigate(ROUTE_PATHS[route])}
-      />
+      <AppSidebar currentRoute={route} onNavigate={handleNavigate} />
 
       <div className="app-main-layout">
         <header className="app-header">
@@ -107,13 +131,13 @@ const AppContent: React.FC = () => {
 
         <main className="app-content" id={MAIN_CONTENT_ID} tabIndex={-1}>
           <RouteErrorBoundary>
-            {currentRoute === "profile" ? (
+            {route === "profile" ? (
               <ProfileSettings />
-            ) : currentRoute === "portfolio" ? (
+            ) : route === "portfolio" ? (
               <Portfolio
-                onOpenWallet={() => navigate(ROUTE_PATHS.profile)}
-                onBrowseRewards={() => navigate(ROUTE_PATHS.games)}
-                onBrowseCollectibles={() => navigate(ROUTE_PATHS.games)}
+                onOpenWallet={() => handleNavigate("profile")}
+                onBrowseRewards={() => handleNavigate("games")}
+                onBrowseCollectibles={() => handleNavigate("games")}
               />
             ) : (
               <GameLobby />
@@ -155,7 +179,5 @@ const App: React.FC = () => {
     </BrowserRouter>
   );
 };
-
-export { Drawer } from "./components/v1/Drawer";
 
 export default App;

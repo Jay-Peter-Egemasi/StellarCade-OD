@@ -3,11 +3,13 @@ resolver = "2"
 
 members = [
     "access-control",
+    "arena-sessions",
     "bonus-rotator",
     "anti-cheat-bounties",
     "bounty-escrow",
     "campaign-claims",
     "creator-royalties",
+    "creator-escrow",
     "creator-drops",
     "achievement-badge",
     "ai-generated-game",
@@ -45,6 +47,7 @@ members = [
     "exploit-prevention",
     "fee-shield",
     "fanout-distributor",
+    "fee-allocator",
     "identity-registry",
     "lending-pool",
     "fee-management",
@@ -88,6 +91,7 @@ members = [
     "streak-bonus",
     "streak-ladder",
     "loot-crate",
+    "loot-rotation",
     "tournament-system",
     "tournament-lobby",
     "treasury",
@@ -99,11 +103,15 @@ members = [
     "wordle-clone",
     "queue-rewards",
     "reserve-manager",
+    "reserve-auction",
     "quest-redeemer",
     "squad-match",
     "sponsor-pool",
     "sponsorship-ledger",
     "treasury-safeguard",
+    "ladder-seasons",
+    "voucher-minter",
+    "map-voting",
 ]
 
 exclude = [
