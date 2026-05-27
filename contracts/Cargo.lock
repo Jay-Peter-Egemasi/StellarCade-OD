@@ -1964,6 +1964,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "stellarcade-affiliate-ledger"
+version = "0.1.0"
+dependencies = [
+ "soroban-sdk 25.3.1",
+]
+
+[[package]]
 name = "stellarcade-ai-generated-game"
 version = "0.1.0"
 dependencies = [
@@ -1979,10 +1986,31 @@ dependencies = [
 ]
 
 [[package]]
+name = "stellarcade-arena-ladder"
+version = "0.1.0"
+dependencies = [
+ "soroban-sdk 25.3.1",
+]
+
+[[package]]
+name = "stellarcade-arena-sessions"
+version = "0.1.0"
+dependencies = [
+ "soroban-sdk 25.3.1",
+]
+
+[[package]]
 name = "stellarcade-attendance-pass"
 version = "0.1.0"
 dependencies = [
  "soroban-sdk 25.3.1",
+]
+
+[[package]]
+name = "stellarcade-badge-minter"
+version = "0.1.0"
+dependencies = [
+ "soroban-sdk 21.7.7",
 ]
 
 [[package]]
@@ -1994,6 +2022,13 @@ dependencies = [
 
 [[package]]
 name = "stellarcade-bonus-rotator"
+version = "0.1.0"
+dependencies = [
+ "soroban-sdk 25.3.1",
+]
+
+[[package]]
+name = "stellarcade-bonus-vault"
 version = "0.1.0"
 dependencies = [
  "soroban-sdk 25.3.1",
@@ -2014,6 +2049,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "stellarcade-clan-seasons"
+version = "0.1.0"
+dependencies = [
+ "soroban-sdk 25.3.1",
+]
+
+[[package]]
 name = "stellarcade-coin-flip"
 version = "0.1.0"
 dependencies = [
@@ -2023,6 +2065,13 @@ dependencies = [
 
 [[package]]
 name = "stellarcade-color-prediction"
+version = "0.1.0"
+dependencies = [
+ "soroban-sdk 25.3.1",
+]
+
+[[package]]
+name = "stellarcade-combo-rewards"
 version = "0.1.0"
 dependencies = [
  "soroban-sdk 25.3.1",
@@ -2110,6 +2159,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "stellarcade-creator-escrow"
+version = "0.1.0"
+dependencies = [
+ "soroban-sdk 25.3.1",
+]
+
+[[package]]
 name = "stellarcade-creator-royalties"
 version = "0.1.0"
 dependencies = [
@@ -2135,6 +2191,13 @@ dependencies = [
 
 [[package]]
 name = "stellarcade-cross-contract-handler"
+version = "0.1.0"
+dependencies = [
+ "soroban-sdk 25.3.1",
+]
+
+[[package]]
+name = "stellarcade-daily-challenges"
 version = "0.1.0"
 dependencies = [
  "soroban-sdk 25.3.1",
@@ -2220,6 +2283,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "stellarcade-fee-allocator"
+version = "0.1.0"
+dependencies = [
+ "soroban-sdk 25.3.1",
+]
+
+[[package]]
 name = "stellarcade-fee-management"
 version = "0.1.0"
 dependencies = [
@@ -2278,6 +2348,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "stellarcade-ladder-seasons"
+version = "0.1.0"
+dependencies = [
+ "soroban-sdk 25.3.1",
+]
+
+[[package]]
 name = "stellarcade-leaderboard"
 version = "0.1.0"
 dependencies = [
@@ -2300,7 +2377,35 @@ dependencies = [
 ]
 
 [[package]]
+name = "stellarcade-loot-rotation"
+version = "0.1.0"
+dependencies = [
+ "soroban-sdk 25.3.1",
+]
+
+[[package]]
+name = "stellarcade-map-voting"
+version = "0.1.0"
+dependencies = [
+ "soroban-sdk 25.3.1",
+]
+
+[[package]]
 name = "stellarcade-matchmaking-queue"
+version = "0.1.0"
+dependencies = [
+ "soroban-sdk 25.3.1",
+]
+
+[[package]]
+name = "stellarcade-mission-ledger"
+version = "0.1.0"
+dependencies = [
+ "soroban-sdk 25.3.1",
+]
+
+[[package]]
+name = "stellarcade-mission-pass"
 version = "0.1.0"
 dependencies = [
  "soroban-sdk 25.3.1",
@@ -2364,6 +2469,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "stellarcade-prize-router-v2"
+version = "0.1.0"
+dependencies = [
+ "soroban-sdk 25.3.1",
+]
+
+[[package]]
+name = "stellarcade-prize-streamer"
+version = "0.1.0"
+dependencies = [
+ "soroban-sdk 25.3.1",
+]
+
+[[package]]
 name = "stellarcade-quest-redeemer"
 version = "0.1.0"
 dependencies = [
@@ -2406,6 +2525,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "stellarcade-reserve-auction"
+version = "0.1.0"
+dependencies = [
+ "soroban-sdk 25.3.1",
+]
+
+[[package]]
 name = "stellarcade-reserve-manager"
 version = "0.1.0"
 dependencies = [
@@ -2427,6 +2553,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "stellarcade-reward-router"
+version = "0.1.0"
+dependencies = [
+ "soroban-sdk 21.7.7",
+]
+
+[[package]]
 name = "stellarcade-reward-stream"
 version = "0.1.0"
 dependencies = [
@@ -2438,6 +2571,27 @@ name = "stellarcade-reward-vesting"
 version = "0.1.0"
 dependencies = [
  "soroban-sdk 25.3.1",
+]
+
+[[package]]
+name = "stellarcade-round-finalizer"
+version = "0.1.0"
+dependencies = [
+ "soroban-sdk 25.3.1",
+]
+
+[[package]]
+name = "stellarcade-season-pass"
+version = "0.1.0"
+dependencies = [
+ "soroban-sdk 25.3.1",
+]
+
+[[package]]
+name = "stellarcade-season-rewards-vault"
+version = "0.1.0"
+dependencies = [
+ "soroban-sdk 21.7.7",
 ]
 
 [[package]]
@@ -2469,7 +2623,28 @@ dependencies = [
 ]
 
 [[package]]
+name = "stellarcade-sponsor-pool"
+version = "0.1.0"
+dependencies = [
+ "soroban-sdk 25.3.1",
+]
+
+[[package]]
+name = "stellarcade-sponsorship-ledger"
+version = "0.1.0"
+dependencies = [
+ "soroban-sdk 25.3.1",
+]
+
+[[package]]
 name = "stellarcade-squad-match"
+version = "0.1.0"
+dependencies = [
+ "soroban-sdk 25.3.1",
+]
+
+[[package]]
+name = "stellarcade-squad-roster"
 version = "0.1.0"
 dependencies = [
  "soroban-sdk 25.3.1",
@@ -2511,6 +2686,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "stellarcade-tournament-lobby"
+version = "0.1.0"
+dependencies = [
+ "soroban-sdk 21.7.7",
+]
+
+[[package]]
 name = "stellarcade-tournament-system"
 version = "0.1.0"
 dependencies = [
@@ -2532,6 +2714,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "stellarcade-treasury-safeguard"
+version = "0.1.0"
+dependencies = [
+ "soroban-sdk 25.3.1",
+]
+
+[[package]]
 name = "stellarcade-trivia-game"
 version = "0.1.0"
 dependencies = [
@@ -2546,6 +2735,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "stellarcade-vault-claims"
+version = "0.1.0"
+dependencies = [
+ "soroban-sdk 25.3.1",
+]
+
+[[package]]
+name = "stellarcade-vault-routing"
+version = "0.1.0"
+dependencies = [
+ "soroban-sdk 25.3.1",
+]
+
+[[package]]
 name = "stellarcade-vip-subscription"
 version = "0.1.0"
 dependencies = [
@@ -2554,6 +2757,13 @@ dependencies = [
 
 [[package]]
 name = "stellarcade-vote-escrow"
+version = "0.1.0"
+dependencies = [
+ "soroban-sdk 25.3.1",
+]
+
+[[package]]
+name = "stellarcade-voucher-minter"
 version = "0.1.0"
 dependencies = [
  "soroban-sdk 25.3.1",
