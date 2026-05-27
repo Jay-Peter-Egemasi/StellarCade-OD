@@ -256,6 +256,21 @@ export type {
   QueueMetrics,
 } from "./QueueHealthWidget";
 
+export {
+  StickyActionsFooter,
+  default as StickyActionsFooterDefault,
+} from "./StickyActionsFooter";
+export type { StickyActionsFooterProps } from "./StickyActionsFooter";
+
+export {
+  WalletBalanceDeltaCards,
+  default as WalletBalanceDeltaCardsDefault,
+} from "./WalletBalanceDeltaCards";
+export type {
+  WalletBalanceDeltaCardsProps,
+  WalletComparisonBalance,
+} from "./WalletBalanceDeltaCards";
+
 // Issues #621–#624
 export {
   ReorderableList,
@@ -284,6 +299,12 @@ export type {
 } from "./EventDigestPanel";
 
 export {
+  InlineStatDelta,
+  default as InlineStatDeltaDefault,
+} from "./InlineStatDelta";
+export type { InlineStatDeltaProps } from "./InlineStatDelta";
+
+export {
   ReviewSubmitSheet,
   default as ReviewSubmitSheetDefault,
 } from "./ReviewSubmitSheet";
@@ -292,5 +313,50 @@ export type {
   ReviewField,
   RiskLevel,
 } from "./ReviewSubmitSheet";
+
+// Issue #705
+export {
+  ContractHealthRibbon,
+  default as ContractHealthRibbonDefault,
+} from "./ContractHealthRibbon";
+export type {
+  ContractHealthRibbonProps,
+  ContractHealthStatus,
+  ContractHealthRibbonVariant,
+} from "./ContractHealthRibbon";
+
+// Issues #743, #748, #749, #750
+export { WalletContractHealthChips } from "./WalletContractHealthChips";
+export type {
+  HealthChipSurface,
+  WalletContractHealthChipsProps,
+  WalletSurfaceStatus,
+  ContractSurfaceStatus,
+} from "./WalletContractHealthChips";
+
+export { CollapsibleStatsGroup } from "./CollapsibleStatsGroup";
+export type {
+  CollapsibleStatsGroupProps,
+  StatItem,
+  StatItemStatus,
+} from "./CollapsibleStatsGroup";
+
+export { StagedConfirmationTray } from "./StagedConfirmationTray";
+export type {
+  StagedConfirmationTrayProps,
+  ConfirmationField,
+  ConfirmationStage,
+  TrayRiskLevel,
+  DoneOutcome,
+} from "./StagedConfirmationTray";
+
+export { RewardBalanceSparklineCard } from "./RewardBalanceSparklineCard";
+export type {
+  RewardBalanceSparklineCardProps,
+  SparklineTrend,
+  RewardCardStatus,
+} from "./RewardBalanceSparklineCard";
+
+// Issue #751
 export { EmptyHintRow, default as EmptyHintRowDefault } from "./EmptyHintRow";
 export type { EmptyHintRowProps } from "./EmptyHintRow";
