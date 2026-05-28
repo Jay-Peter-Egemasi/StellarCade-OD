@@ -2,6 +2,8 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { ApiClient } from '@/services/typed-api-sdk';
 import { SkeletonPreset } from '@/components/v1/LoadingSkeletonSet';
 import { AccountSwitcher } from '@/components/v1/AccountSwitcher';
+import { DraftPresenceIndicator } from '@/components/v1/DraftPresenceIndicator';
+import SensitiveActionChecklist from '@/components/v1/SensitiveActionChecklist';
 import { StickyActionsFooter } from '@/components/v1/StickyActionsFooter';
 import GlobalStateStore from '@/services/global-state-store';
 import { useWalletStatus } from '@/hooks/v1/useWalletStatus';
@@ -42,6 +44,8 @@ const ProfileSettings: React.FC = () => {
   const [success, setSuccess] = useState<string | null>(null);
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [username, setUsername] = useState('');
+  const [checkedReviewIds, setCheckedReviewIds] = useState<string[]>([]);
+  const [lastDraftEditedAt, setLastDraftEditedAt] = useState<number | undefined>();
 
   const store = useRef<GlobalStateStore>(profileStore);
 
@@ -141,6 +145,22 @@ const ProfileSettings: React.FC = () => {
     setSaving(false);
   };
 
+  const hasDraftChanges = Boolean(profile && username.trim() !== (profile.username ?? '').trim());
+  const draftStatus = saving ? 'saving' : hasDraftChanges ? 'stale' : success ? 'saved' : 'idle';
+  const reviewChecklist = [
+    { id: 'username-review', label: 'I reviewed the username change.' },
+    { id: 'wallet-review', label: 'I verified wallet ownership and profile identity.' },
+  ];
+  const isReviewComplete = checkedReviewIds.length === reviewChecklist.length;
+
+  useEffect(() => {
+    if (hasDraftChanges) {
+      setLastDraftEditedAt(Date.now());
+    } else {
+      setCheckedReviewIds([]);
+    }
+  }, [hasDraftChanges]);
+
   if (loading) {
     return (
       <div data-testid="profile-settings-loading" role="status" aria-live="polite">
@@ -203,9 +223,43 @@ const ProfileSettings: React.FC = () => {
             aria-readonly
           />
         </div>
+        <DraftPresenceIndicator
+          draftId={profile?.address ?? ''}
+          moduleName="Profile settings"
+          status={draftStatus}
+          lastEditedAt={lastDraftEditedAt}
+          onDiscard={
+            hasDraftChanges
+              ? () => {
+                  setUsername(profile?.username ?? '');
+                  setSuccess(null);
+                  setError(null);
+                  setCheckedReviewIds([]);
+                }
+              : undefined
+          }
+          testId="profile-settings-draft-indicator"
+        />
+
+        {hasDraftChanges ? (
+          <SensitiveActionChecklist
+            items={reviewChecklist}
+            checkedIds={checkedReviewIds}
+            onToggle={(id) =>
+              setCheckedReviewIds((prev) =>
+                prev.includes(id) ? prev.filter((entry) => entry !== id) : [...prev, id],
+              )
+            }
+            testId="profile-settings-review-checklist"
+          />
+        ) : null}
 
         <StickyActionsFooter testId="profile-settings-actions-footer">
-          <button type="submit" disabled={saving} data-testid="profile-settings-save">
+          <button
+            type="submit"
+            disabled={saving || (hasDraftChanges && !isReviewComplete)}
+            data-testid="profile-settings-save"
+          >
             {saving ? 'Saving...' : 'Save Profile'}
           </button>
         </StickyActionsFooter>

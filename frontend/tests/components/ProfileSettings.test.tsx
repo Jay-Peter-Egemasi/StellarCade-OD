@@ -108,6 +108,10 @@ describe('ProfileSettings page', () => {
       target: { value: 'alice_updated' },
     });
     expect(screen.getByDisplayValue('alice_updated')).toBeInTheDocument();
+    expect(screen.getByTestId('profile-settings-draft-indicator')).toBeInTheDocument();
+    expect(screen.getByTestId('profile-settings-save')).toBeDisabled();
+    fireEvent.click(screen.getByLabelText('I reviewed the username change.'));
+    fireEvent.click(screen.getByLabelText('I verified wallet ownership and profile identity.'));
 
     fireEvent.click(screen.getByTestId('profile-settings-save'));
 
@@ -115,6 +119,30 @@ describe('ProfileSettings page', () => {
       expect(mockUpdateProfile).toHaveBeenCalledTimes(1);
       expect(screen.getByTestId('profile-settings-success')).toHaveTextContent(/Profile saved successfully/i);
       expect(screen.getByDisplayValue('alice_updated')).toBeInTheDocument();
+    });
+  });
+
+  it('supports discarding the draft marker state', async () => {
+    mockGetProfile.mockResolvedValueOnce({
+      success: true,
+      data: {
+        address: 'GABC123',
+        username: 'alice',
+        createdAt: '2025-01-01T12:00:00Z',
+      },
+    });
+
+    render(<ProfileSettings />);
+
+    await waitFor(() => expect(screen.getByDisplayValue('alice')).toBeInTheDocument());
+    fireEvent.change(screen.getByLabelText(/username/i), {
+      target: { value: 'alice_changed' },
+    });
+    fireEvent.click(screen.getByTestId('profile-settings-draft-indicator-discard'));
+
+    await waitFor(() => {
+      expect(screen.getByDisplayValue('alice')).toBeInTheDocument();
+      expect(screen.queryByTestId('profile-settings-review-checklist')).not.toBeInTheDocument();
     });
   });
 
@@ -144,6 +172,8 @@ describe('ProfileSettings page', () => {
     fireEvent.change(screen.getByLabelText(/username/i), {
       target: { value: 'alice_fail' },
     });
+    fireEvent.click(screen.getByLabelText('I reviewed the username change.'));
+    fireEvent.click(screen.getByLabelText('I verified wallet ownership and profile identity.'));
 
     fireEvent.click(screen.getByTestId('profile-settings-save'));
 

@@ -10,5 +10,6 @@ describe("WalletDetail", () => {
     expect(screen.getByRole("heading", { level: 1, name: "Wallet Details" })).toBeInTheDocument();
     expect(screen.getByRole("region", { name: "Wallet comparison snapshot" })).toBeInTheDocument();
     expect(screen.getByTestId("wallet-balance-delta-cards")).toBeInTheDocument();
+    expect(screen.getByTestId("wallet-overview-reward-timeline")).toBeInTheDocument();
   });
 });
